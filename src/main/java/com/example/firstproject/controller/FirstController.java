@@ -14,4 +14,10 @@ public class FirstController {
         return "greetings"; //greetings.mustache 파일 반환
         // 서버가 templates에서 찾아서 반환해준다.
     }
+
+    @GetMapping("/bye")
+    public String seeYouNext(Model model) {
+        model.addAttribute("nickname", "홍길동");
+        return "goodbye";
+    }
 }
