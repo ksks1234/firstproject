@@ -28,12 +28,14 @@ public class ArticleApiController {
     public Article show(@PathVariable Long id) {
         return articleService.show(id);
     }
-//    // POST
-//    @PostMapping("/api/articles")
-//    public Article create(@RequestBody ArticleForm dto) {
-//        Article article = dto.toEntity();
-//        return articleRepository.save(article);
-//    }
+    // POST
+    @PostMapping("/api/articles")
+    public ResponseEntity<Article> create(@RequestBody ArticleForm dto) {
+        Article created = articleService.create(dto);
+        return (created != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(created) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 //    // PATCH
 //    @PatchMapping("/api/articles/{id}")
 //    public ResponseEntity<Article> update(@PathVariable Long id,
