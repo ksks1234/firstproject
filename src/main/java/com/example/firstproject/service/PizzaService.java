@@ -28,4 +28,15 @@ public class PizzaService {
         }
         return pizzaRepository.save(pizza);
     }
+
+    public Pizza update(Long id, PizzaDto dto) {
+        Pizza pizza = dto.toEntity();
+        Pizza target = pizzaRepository.findById(id).orElse(null);
+        if(target == null || id != pizza.getId()) {
+            return null;
+        }
+        target.patch(pizza);
+        Pizza updated = pizzaRepository.save(target);
+        return updated;
+    }
 }

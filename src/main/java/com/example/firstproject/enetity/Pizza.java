@@ -17,4 +17,11 @@ public class Pizza {
     private Long id;
     private String name;
     private String price;
+
+    public void patch(Pizza pizza) {
+        if(pizza.name != null)
+            this.name = pizza.name;
+        if(pizza.price != null)
+            this.price = pizza.price;
+    }
 }

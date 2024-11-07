@@ -36,6 +36,15 @@ public class PizzaApiController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
     // 4. 수정
+    @PatchMapping("/api/pizzas/{id}")
+    public ResponseEntity<Pizza> update(@PathVariable Long id,
+                                        @RequestBody PizzaDto dto){
+        Pizza updated = pizzaService.update(id, dto);
+        return (updated != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(updated) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
     // 5. 삭제
 
 }
