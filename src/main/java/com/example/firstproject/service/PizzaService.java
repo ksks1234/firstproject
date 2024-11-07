@@ -15,4 +15,8 @@ public class PizzaService {
     public List<Pizza> index() {
         return pizzaRepository.findAll();
     }
+
+    public Pizza show(Long id) {
+        return pizzaRepository.findById(id).orElse(null);
+    }
 }

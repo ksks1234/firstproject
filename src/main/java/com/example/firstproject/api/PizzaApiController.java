@@ -7,6 +7,8 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,8 +23,13 @@ public class PizzaApiController {
     public List<Pizza> index() {
         return pizzaService.index();
     }
-    // 2. 생성
-    // 3. 수정
-    // 4. 삭제
+    // 2. 단건 조회
+    @GetMapping("/api/pizzas/{id}")
+    public Pizza show(@PathVariable Long id) {
+        return pizzaService.show(id);
+    }
+    // 3. 삽입
+    // 4. 수정
+    // 5. 삭제
 
 }
