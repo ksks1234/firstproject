@@ -39,4 +39,13 @@ public class PizzaService {
         Pizza updated = pizzaRepository.save(target);
         return updated;
     }
+
+    public Pizza delete(Long id) {
+        Pizza target = pizzaRepository.findById(id).orElse(null);
+        if(target == null){
+            return null;
+        }
+        pizzaRepository.delete(target);
+        return target;
+    }
 }
