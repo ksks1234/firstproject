@@ -5,6 +5,7 @@ import com.example.firstproject.enetity.Article;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +54,7 @@ class ArticleServiceTest {
     }
 
     @Test
+    @Transactional
     void create_성공_title과_content만_있는_dto_입력() {
         // 1. 예상 데이터
         String title = "라라라라";
@@ -66,6 +68,7 @@ class ArticleServiceTest {
     }
 
     @Test
+    @Transactional
     void create_실패_id가_포함된_dto_입력() {
         // 1. 예상 데이터
         Long id=4L;
