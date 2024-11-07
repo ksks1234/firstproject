@@ -5,12 +5,11 @@ import com.example.firstproject.enetity.Pizza;
 import com.example.firstproject.service.PizzaService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -29,6 +28,13 @@ public class PizzaApiController {
         return pizzaService.show(id);
     }
     // 3. 삽입
+    @PostMapping("/api/pizzas")
+    public ResponseEntity<Pizza> create(@RequestBody PizzaDto dto) {
+        Pizza created = pizzaService.create(dto);
+        return (created != null)?
+                ResponseEntity.status(HttpStatus.OK).body(created) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
     // 4. 수정
     // 5. 삭제
 
